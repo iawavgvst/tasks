@@ -40,11 +40,15 @@ services:
             PGPASSWORD: secret
         volumes:
             - ./pgsql:/tmp
+            - 'postgres_data:/var/lib/postgresql/data'
         networks:
             - internal
         ports:
             - "5431:5432"
 
+volumes:
+    postgres_data:
+        driver: local
 networks:
     internal:
         driver: bridge
