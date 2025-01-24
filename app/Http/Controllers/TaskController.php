@@ -14,7 +14,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return response()->json($tasks);
+        return response()->json(['data' => $tasks]);
     }
 
     /**
@@ -44,7 +44,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return response()->json($task);
+        return response()->json(['data' => $task]);
     }
 
     /**
