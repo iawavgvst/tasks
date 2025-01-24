@@ -9,8 +9,8 @@
 
 Необходимо выполнить в терминале следующие команды для запуска проекта в контейнерах:
 
-• cd docker_j - войти в директорию проекта,
-• docker-compose up -d - поднять контейнеры. 
+- cd docker_j - войти в директорию проекта,
+- docker-compose up -d - поднять контейнеры. 
 
 Подключение осуществляется через localhost:8083.
 
@@ -18,16 +18,16 @@
 
 Чтобы остановить контейнеры, используйте команду:
 
-• docker-compose down
+- docker-compose down
 
 ## Структура проекта
 
-• База данных: PostgreSQL, для взаимодействия базой данных использовался Eloquent, создана модель Task с начальными свойствами и выполнена миграция таблицы.
-• Маршруты: В routes/api.php подключен ресурсный роут TaskController, реализующий все методы API.
-• Запросы: Созданы отдельные реквесты (TaskRequest, StoreRequest, UpdateRequest) для методов index, store, update.
-• Поиск и сортировка: Реализована возможность поиска по названию (search) и сортировки по дате выполнения и создания (sort).
-• Пагинация: Подключена для постраничного вывода.
-• Документация API: Для отображения методов API использовался Swagger. Создан отдельный TaskController в директории Controllers/Swagger для аннотаций без загромождения основного кода. Документацию можно просмотреть, перейдя по адресу: http://localhost:8083/api/documentation.
+- База данных: PostgreSQL, для взаимодействия базой данных использовался Eloquent, создана модель Task с начальными свойствами и выполнена миграция таблицы.
+- Маршруты: В routes/api.php подключен ресурсный роут TaskController, реализующий все методы API.
+- Запросы: Созданы отдельные реквесты (TaskRequest, StoreRequest, UpdateRequest) для методов index, store, update.
+- Поиск и сортировка: Реализована возможность поиска по названию (search) и сортировки по дате выполнения и создания (sort).
+- Пагинация: Подключена для постраничного вывода.
+- Документация API: Для отображения методов API использовался Swagger. Создан отдельный TaskController в директории Controllers/Swagger для аннотаций без загромождения основного кода. Документацию можно просмотреть, перейдя по адресу: http://localhost:8083/api/documentation.
 
 ## Тестирование API
 
@@ -37,11 +37,11 @@
 
 Для достижения высокой эффективности и качества работы с Laravel были задействованы следующие инструменты:
 
-• Artisan (инструмент командной строки) - Laravel Artisan Documentation,
-• Eloqient (ORM для работы с базой данных) - Laravel Eloquent ORM Documentation,
-• Routing (маршрутизация) - Laravel Routing Documentation,
-• Migrations (управление схемами базы данных) - Laravel Migrations Documentation,
-• Validation (проверка входящих данных на соответствие заданным правилам) - Laravel Validation Documentation.
+- Artisan (инструмент командной строки) - Laravel Artisan Documentation,
+- Eloqient (ORM для работы с базой данных) - Laravel Eloquent ORM Documentation,
+- Routing (маршрутизация) - Laravel Routing Documentation,
+- Migrations (управление схемами базы данных) - Laravel Migrations Documentation,
+- Validation (проверка входящих данных на соответствие заданным правилам) - Laravel Validation Documentation.
 
 ## Контроль версий кода
 
