@@ -3,17 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Task\StoreRequest;
+use App\Http\Requests\Task\TaskRequest;
 use App\Http\Requests\Task\UpdateRequest;
 use App\Models\Task;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(TaskRequest $request): JsonResponse
     {
-        $tasks = Task::all();
+        $search = $request->input('search', '');
+        $sort = $request->input('sort', 'created_at');
+
+        $query = Task::query();
+
+        if (!empty($search)) {
+            $query->where('title', 'LIKE', '%' . $search . '%');
+        }
+
+        if (in_array($sort, ['due_date', 'created_at'])) {
+            $query->orderBy($sort);
+        } else {
+            $query->orderBy('created_at');
+        }
+
+        $tasks = $query->paginate(3);
+
+        Log::info('Tasks retrieved', ['tasks' => $tasks]);
+
         return response()->json(['data' => $tasks]);
     }
 
@@ -28,7 +49,7 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): JsonResponse
     {
         $data = $request->validated();
         $task = Task::create($data);
@@ -42,7 +63,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show(Task $task): JsonResponse
     {
         return response()->json(['data' => $task]);
     }
@@ -58,7 +79,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, Task $task)
+    public function update(UpdateRequest $request, Task $task): JsonResponse
     {
         $data = $request->validated();
         $task->update($data);
@@ -71,7 +92,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task): JsonResponse
     {
         $task->delete();
 

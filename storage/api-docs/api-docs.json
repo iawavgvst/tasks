@@ -13,6 +13,32 @@
                 ],
                 "summary": "Список задач",
                 "operationId": "feed89770241fcb6af2325dafc9adfde",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Поиск по названию задачи",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Задача1"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Сортировка по полям due_date или created_at",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "due_date",
+                                "created_at"
+                            ],
+                            "example": "due_date"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Ok",
@@ -39,7 +65,7 @@
                                                     "due_date": {
                                                         "type": "string",
                                                         "format": "date-time",
-                                                        "example": "2025-01-01"
+                                                        "example": "2025-01-20T15:00:00"
                                                     },
                                                     "status": {
                                                         "type": "string",
@@ -70,11 +96,32 @@
                                                     "created_at": {
                                                         "type": "string",
                                                         "format": "date-time",
-                                                        "example": "2025-01-01"
+                                                        "example": "2025-01-20T15:00:00"
                                                     }
                                                 },
                                                 "type": "object"
                                             }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 50
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"
@@ -169,7 +216,7 @@
                                                 "due_date": {
                                                     "type": "string",
                                                     "format": "date-time",
-                                                    "example": "2025-01-01"
+                                                    "example": "2025-01-20T15:00:00"
                                                 },
                                                 "status": {
                                                     "type": "string",
@@ -200,7 +247,7 @@
                                                 "created_at": {
                                                     "type": "string",
                                                     "format": "date-time",
-                                                    "example": "2025-01-01"
+                                                    "example": "2025-01-20T15:00:00"
                                                 }
                                             },
                                             "type": "object"
@@ -254,7 +301,7 @@
                                                 "due_date": {
                                                     "type": "string",
                                                     "format": "date-time",
-                                                    "example": "2025-01-01"
+                                                    "example": "2025-01-20T15:00:00"
                                                 },
                                                 "status": {
                                                     "type": "string",
@@ -285,7 +332,7 @@
                                                 "created_at": {
                                                     "type": "string",
                                                     "format": "date-time",
-                                                    "example": "2025-01-01"
+                                                    "example": "2025-01-20T15:00:00"
                                                 }
                                             },
                                             "type": "object"

@@ -23,11 +23,6 @@ class Task extends Model
         'category',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d',
-        'due_date' => 'datetime:Y-m-d',
-    ];
-
     protected $hidden = [
         'updated_at',
         'deleted_at'
