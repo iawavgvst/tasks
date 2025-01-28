@@ -38,7 +38,7 @@
 Для достижения высокой эффективности и качества работы с Laravel были задействованы следующие инструменты:
 
 - Artisan (инструмент командной строки) - Laravel Artisan Documentation,
-- Eloqient (ORM для работы с базой данных) - Laravel Eloquent ORM Documentation,
+- Eloquent (ORM для работы с базой данных) - Laravel Eloquent ORM Documentation,
 - Routing (маршрутизация) - Laravel Routing Documentation,
 - Migrations (управление схемами базы данных) - Laravel Migrations Documentation,
 - Validation (проверка входящих данных на соответствие заданным правилам) - Laravel Validation Documentation.
