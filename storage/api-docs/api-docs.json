@@ -1,0 +1,479 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/api/tasks": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Список задач",
+                "operationId": "feed89770241fcb6af2325dafc9adfde",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Поиск по названию задачи",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "Задача1"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Сортировка по полям due_date или created_at",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "due_date",
+                                "created_at"
+                            ],
+                            "example": "due_date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Some title"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Some description"
+                                                    },
+                                                    "due_date": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-20T15:00:00"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "выполнена",
+                                                            "не выполнена"
+                                                        ],
+                                                        "example": "не выполнена"
+                                                    },
+                                                    "priority": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "низкий",
+                                                            "средний",
+                                                            "высокий"
+                                                        ],
+                                                        "example": "средний"
+                                                    },
+                                                    "category": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "работа",
+                                                            "дом",
+                                                            "личное"
+                                                        ],
+                                                        "example": "работа"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-20T15:00:00"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "meta": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 50
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Создание задачи",
+                "operationId": "44140ecf3dfc93dfa6ae24da60ceb875",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Some title"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Some description"
+                                            },
+                                            "due_date": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-01-01T15:00:00"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "выполнена",
+                                                    "не выполнена"
+                                                ],
+                                                "example": "не выполнена"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "низкий",
+                                                    "средний",
+                                                    "высокий"
+                                                ],
+                                                "example": "средний"
+                                            },
+                                            "category": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "работа",
+                                                    "дом",
+                                                    "личное"
+                                                ],
+                                                "example": "работа"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Task created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Some title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Some description"
+                                                },
+                                                "due_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-01-20T15:00:00"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "выполнена",
+                                                        "не выполнена"
+                                                    ],
+                                                    "example": "не выполнена"
+                                                },
+                                                "priority": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "низкий",
+                                                        "средний",
+                                                        "высокий"
+                                                    ],
+                                                    "example": "средний"
+                                                },
+                                                "category": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "работа",
+                                                        "дом",
+                                                        "личное"
+                                                    ],
+                                                    "example": "работа"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-01-20T15:00:00"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks/{task}": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Задачa по ID",
+                "operationId": "9ccc9fcdee5d706b5aad72d0502c2092",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "description": "ID поста",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Some title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Some description"
+                                                },
+                                                "due_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-01-20T15:00:00"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "выполнена",
+                                                        "не выполнена"
+                                                    ],
+                                                    "example": "не выполнена"
+                                                },
+                                                "priority": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "низкий",
+                                                        "средний",
+                                                        "высокий"
+                                                    ],
+                                                    "example": "средний"
+                                                },
+                                                "category": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "работа",
+                                                        "дом",
+                                                        "личное"
+                                                    ],
+                                                    "example": "работа"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-01-20T15:00:00"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Обновление задачи по ID",
+                "operationId": "ab739b7c4cbcb92422456be5c4fa75be",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "description": "ID поста",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Some title"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Some description edited"
+                                            },
+                                            "due_date": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2025-01-01T15:00:00"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "выполнена",
+                                                    "не выполнена"
+                                                ],
+                                                "example": "не выполнена"
+                                            },
+                                            "priority": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "низкий",
+                                                    "средний",
+                                                    "высокий"
+                                                ],
+                                                "example": "средний"
+                                            },
+                                            "category": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "работа",
+                                                    "дом",
+                                                    "личное"
+                                                ],
+                                                "example": "дом"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Task updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Удаление задачи по ID",
+                "operationId": "f70d4118843ee1334a5b4ea827cd1ec7",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "description": "ID поста",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Task deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Tasks",
+            "description": "Tasks"
+        }
+    ]
+}
